@@ -4,3 +4,6 @@
 [submodule "ctti"]
 	path = ctti
 	url = https://github.com/Manu343726/ctti.git
+[submodule "box2d"]
+	path = box2d
+	url = ./box2d
