@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(Shootout)
+project(DoodleJump)
 
 #
 # Specify source files
@@ -83,7 +83,7 @@ set(ALL_CODE_FILES
 #
 # This is the main target
 #
-add_executable(Shootout ${ALL_CODE_FILES})
+add_executable(DoodleJump ${ALL_CODE_FILES} "systems/PhysicsEngine.cpp" "systems/AudioSystem.cpp")
 
 #
 # Doing the following so that the source code can do includes like...
@@ -91,20 +91,20 @@ add_executable(Shootout ${ALL_CODE_FILES})
 # instead of...
 # #include "../components/Component.hpp"
 #
-target_include_directories(Shootout PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(DoodleJump PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 #
 # Want the C++ 17 standard for the project
 #
-set_property(TARGET Shootout PROPERTY CXX_STANDARD 17)
+set_property(TARGET DoodleJump PROPERTY CXX_STANDARD 17)
 
 #
 # Enable a lot of warnings, forcing better cod eto be written
 #
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-	target_compile_options(Shootout PRIVATE /W4 /permissive-)
+	target_compile_options(DoodleJump PRIVATE /W4 /permissive-)
 else()
-	target_compile_options(Shootout PRIVATE -O3 -Wall -Wextra -pedantic) # -Wconversion -Wsign-conversion
+	target_compile_options(DoodleJump PRIVATE -O3 -Wall -Wextra -pedantic) # -Wconversion -Wsign-conversion
 endif()
 
 
@@ -131,8 +131,8 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 add_subdirectory(SFML)
 include_directories(SFML/include)
 
-add_dependencies(Shootout sfml-graphics sfml-audio sfml-system sfml-window sfml-network)
-target_link_libraries(Shootout sfml-graphics sfml-audio sfml-system sfml-window sfml-network)
+add_dependencies(DoodleJump sfml-graphics sfml-audio sfml-system sfml-window sfml-network)
+target_link_libraries(DoodleJump sfml-graphics sfml-audio sfml-system sfml-window sfml-network)
 
 #
 # ------------------------ Add CTTI ------------------------

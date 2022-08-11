@@ -12,14 +12,14 @@ std::shared_ptr<sf::RenderWindow> prepareWindow()
     sf::ContextSettings settings;
 
 	// Landscape windows
-    //auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(640, 480), "Shootout", sf::Style::Titlebar | sf::Style::Close, settings);
-    //auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(800, 600), "Shootout", sf::Style::Titlebar | sf::Style::Close, settings);
-    auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1024, 768), "Shootout", sf::Style::Titlebar | sf::Style::Close, settings);
-    //auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Shootout", sf::Style::Titlebar | sf::Style::Close, settings);
+    //auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(640, 480), "DoodleJump", sf::Style::Titlebar | sf::Style::Close, settings);
+    //auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(800, 600), "DoodleJump", sf::Style::Titlebar | sf::Style::Close, settings);
+    auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1024, 768), "DoodleJump", sf::Style::Titlebar | sf::Style::Close, settings);
+    //auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "DoodleJump", sf::Style::Titlebar | sf::Style::Close, settings);
 
     // Vertical windows
-    //auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(600, 800), "Shootout", sf::Style::Titlebar | sf::Style::Close, settings);
-    //auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1080, 1920), "Shootout", sf::Style::Titlebar | sf::Style::Close, settings);
+    //auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(600, 800), "DoodleJump", sf::Style::Titlebar | sf::Style::Close, settings);
+    //auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1080, 1920), "DoodleJump", sf::Style::Titlebar | sf::Style::Close, settings);
 
     window->setVerticalSyncEnabled(true);
 
