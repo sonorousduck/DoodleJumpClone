@@ -3,12 +3,14 @@
 #include "entities/Entity.hpp"
 #include "systems/Renderer.hpp"
 #include "systems/KeyboardInput.hpp"
+#include "systems/AudioSystem.hpp"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window/Event.hpp>
 #include <chrono>
 #include <memory>
 #include <unordered_set>
+#include "systems/AudioSystem.hpp"
 
 class GameModel
 {
@@ -28,6 +30,7 @@ class GameModel
     // Systems
     std::unique_ptr<systems::KeyboardInput> m_systemKeyboardInput;
     std::unique_ptr<systems::Renderer> m_systemRender;
+    std::unique_ptr<systems::AudioSystem> m_audioSystem;
 
     void addEntity(std::shared_ptr<entities::Entity> entity);
     void removeEntity(decltype(entities::Entity().getId()) entityId);

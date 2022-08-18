@@ -7,3 +7,6 @@
 [submodule "box2d"]
 	path = box2d
 	url = ./box2d
+[submodule "rapidjson"]
+	path = rapidjson
+	url = git@github.com:Tencent/rapidjson.git

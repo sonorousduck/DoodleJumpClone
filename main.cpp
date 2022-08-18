@@ -2,9 +2,46 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+
+
+#include <algorithm>
+#include <atomic>
 #include <chrono>
+#include <fstream>
 #include <iostream>
+#include <latch>
 #include <memory>
+#include <sstream>
+#include <string>
+
+const std::string CONFIG_SETTINGS_FILENAME = "client.settings.json";
+const std::string CONFIG_DEVELOPER_FILENAME = "client.developer.json";
+const std::string CONFIG_SCORES_FILENAME = "client.scores.json";
+
+
+auto readConfiguration()
+{
+    // Reference: https://stackoverflow.com/questions/2602013/read-whole-ascii-file-into-c-stdstring
+    // Using Jerry's answer, because it was benchmarked to be quite fast, even though the config files are small.
+    std::ifstream inSettings(CONFIG_SETTINGS_FILENAME);
+    std::stringstream bufferSettings;
+    bufferSettings << inSettings.rdbuf();
+    inSettings.close();
+
+    std::stringstream bufferDeveloper;
+    std::ifstream inDeveloper(CONFIG_DEVELOPER_FILENAME);
+    if (inDeveloper)
+    {
+        bufferDeveloper << inDeveloper.rdbuf();
+        inDeveloper.close();
+    }
+
+    return Configuration::instance().initialize(bufferSettings.str(), bufferDeveloper.str());
+}
+
+
+
+
 
 std::shared_ptr<sf::RenderWindow> prepareWindow()
 {

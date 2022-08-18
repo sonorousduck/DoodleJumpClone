@@ -26,9 +26,11 @@ bool GameModel::initialize(sf::Vector2f viewSize)
     m_systemKeyboardInput = std::make_unique<systems::KeyboardInput>(inputMapping);
 
     m_systemRender = std::make_unique<systems::Renderer>();
+    m_audioSystem = std::make_unique<systems::AudioSystem>();
 
     // Create and add entities
-    addEntity(entities::createLocalPlayer("assets/crow.png", viewSize, sf::Vector2f(-0.25f, 0.0f), 0.05f, m_textures));
+    addEntity(entities::createLocalPlayer("assets/images/crow.png", viewSize, sf::Vector2f(-0.25f, 0.0f), 0.05f, m_textures));
+
 
     return true;
 }
@@ -53,10 +55,13 @@ void GameModel::signalKeyReleased(sf::Event::KeyEvent event)
 void GameModel::update(const std::chrono::milliseconds elapsedTime, std::shared_ptr<sf::RenderTarget> renderTarget)
 {
     // Update non-render systems
+    m_audioSystem->update(elapsedTime);
+
 
     // Render
     m_systemKeyboardInput->update(elapsedTime);
     m_systemRender->update(elapsedTime, renderTarget);
+    
 }
 
 

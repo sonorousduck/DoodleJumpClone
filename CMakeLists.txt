@@ -31,7 +31,11 @@ set(COMPONENTS_HEADERS
 	components/Size.hpp
 	components/Movement.hpp
 	components/Input.hpp
+	components/Audio.hpp
+	components/AudioSource.hpp
 	)
+
+
 set(COMPONENTS_SOURCES
 	)
 
@@ -40,13 +44,27 @@ set(SYSTEMS_HEADERS
 	systems/System.hpp
 	systems/Renderer.hpp
 	systems/KeyboardInput.hpp
+	systems/AudioSystem.hpp
+	systems/PhysicsEngine.hpp
 	)
 set(SYSTEMS_SOURCES
 	systems/System.cpp
 	systems/Renderer.cpp
 	systems/KeyboardInput.cpp
+	systems/AudioSystem.cpp
+	systems/PhysicsEngine.cpp
 	)
 
+set(MISC_HEADERS
+	misc/ContentKey.hpp
+	misc/ConcurrentQueue.hpp
+	misc/Content.hpp
+
+)
+
+set(MISC_SOURCES
+	misc/Content.cpp
+)
 
 #
 # Organize the files into logical groups
@@ -64,6 +82,9 @@ source_group("Entities\\Source Files" FILES ${ENTITY_SOURCES})
 source_group("Systems\\Header Files" FILES ${SYSTEMS_HEADERS})
 source_group("Systems\\Source Files" FILES ${SYSTEMS_SOURCES})
 
+source_group("Misc\\Header Files" FILES ${MISC_HEADERS})
+source_group("Misc\\Source Files" FILES ${MISC_SOURCES})
+
 
 #
 # For clang-format
@@ -78,12 +99,14 @@ set(ALL_CODE_FILES
 	${ENTITY_SOURCES}
 	${SYSTEMS_HEADERS}
 	${SYSTEMS_SOURCES}
+	${MISC_HEADERS}
+	${MISC_SOURCES}
 	)
 
 #
 # This is the main target
 #
-add_executable(DoodleJump ${ALL_CODE_FILES} "systems/PhysicsEngine.cpp" "systems/AudioSystem.cpp")
+add_executable(DoodleJump ${ALL_CODE_FILES})
 
 #
 # Doing the following so that the source code can do includes like...
@@ -112,7 +135,19 @@ endif()
 #
 # Move the assets into the build folder so they load at runtime (inside MSVC)
 #
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/assets/crow.png ${CMAKE_CURRENT_BINARY_DIR}/assets/crow.png COPYONLY)
+# configure_file(${CMAKE_CURRENT_SOURCE_DIR}/assets/images/crow.png ${CMAKE_CURRENT_BINARY_DIR}/assets/images/crow.png COPYONLY)
+
+
+#
+# Move the assets into the build folder so they load at runtime
+#
+set(ASSETS_DIR assets)
+set(ASSETS_FONT_DIR ${ASSETS_DIR}/fonts)
+set(ASSETS_IMAGE_DIR ${ASSETS_DIR}/images)
+set(ASSETS_AUDIO_DIR ${ASSETS_DIR}/audio)
+set(ASSETS_MUSIC_DIR ${ASSETS_DIR}/music)
+
+
 
 
 
